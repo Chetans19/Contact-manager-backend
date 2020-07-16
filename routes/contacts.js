@@ -1,10 +1,17 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../middleware/auth');
+const { check, validationResult } = require('express-validator');
+
+const User = require('../models/User');
+const Contact = require('../models/Contact');
+
 
 // @route GET/api/contacts
 // @desc Get all user contacts
 // @access Private
-router.get('/', (req, res) => {
+// Adding second parameter as auth makes it protected
+router.get('/', auth, (req, res) => {
     res.send('Get all contacts')
 });
 
